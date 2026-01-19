@@ -174,8 +174,9 @@ export const ScatterPlot = ({ points, width = 600, height = 400 }: ScatterPlotPr
                 fill={color}
                 opacity={0.2}
                 animate={{ r: isActive ? 24 : 14 }}
+                transition={{ duration: 0.3 }}
               />
-              
+
               {/* Main point */}
               <motion.circle
                 cx={x}
@@ -234,7 +235,7 @@ export const ScatterPlot = ({ points, width = 600, height = 400 }: ScatterPlotPr
                     </p>
                   </div>
                 </div>
-                
+
                 {/* Stats */}
                 <div className="space-y-2 mb-3">
                   {[
