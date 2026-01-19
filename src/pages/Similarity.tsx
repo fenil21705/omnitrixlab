@@ -184,41 +184,22 @@ export const Similarity = () => {
                   <h2 className="font-orbitron text-base sm:text-lg text-primary mb-4 sm:mb-6 text-center">
                     TOP 3 SIMILAR ALIENS
                   </h2>
-                  <div className="space-y-4 max-w-4xl mx-auto">
-                    {/* Top Alien - Centered and specific width */}
-                    <div className="flex justify-center">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-6 max-w-4xl mx-auto">
+                    {topSimilar.map((result, index) => (
                       <motion.div
+                        key={result.alien.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="w-[60%] sm:w-[40%] md:w-[33%]"
+                        transition={{ delay: 0.2 + index * 0.1 }}
+                        className="w-full"
                       >
                         <AlienCard
-                          alien={topSimilar[0].alien}
-                          similarity={topSimilar[0].similarity}
-                          onClick={() => setSelectedAlienForDetail(topSimilar[0].alien)}
+                          alien={result.alien}
+                          similarity={result.similarity}
+                          onClick={() => setSelectedAlienForDetail(result.alien)}
                         />
                       </motion.div>
-                    </div>
-
-                    {/* Next 2 Aliens - Grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-6 md:justify-center">
-                      {topSimilar.slice(1).map((result, index) => (
-                        <motion.div
-                          key={result.alien.id}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.3 + index * 0.1 }}
-                          className="w-full"
-                        >
-                          <AlienCard
-                            alien={result.alien}
-                            similarity={result.similarity}
-                            onClick={() => setSelectedAlienForDetail(result.alien)}
-                          />
-                        </motion.div>
-                      ))}
-                    </div>
+                    ))}
                   </div>
                 </motion.div>
 
