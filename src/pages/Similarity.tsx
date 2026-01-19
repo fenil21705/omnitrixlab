@@ -191,13 +191,23 @@ export const Similarity = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 + index * 0.1 }}
-                        className="w-full"
+                        className={cn(
+                          "w-full flex justify-center", // Flex center for the pyramid top item
+                          index === 0 ? "col-span-2 md:col-span-1" : "col-span-1"
+                        )}
                       >
-                        <AlienCard
-                          alien={result.alien}
-                          similarity={result.similarity}
-                          onClick={() => setSelectedAlienForDetail(result.alien)}
-                        />
+                        <div className={cn(
+                          "w-full",
+                          // On mobile, constrain the width of the top card so it isn't huge
+                          // On desktop, it takes the full width of its column
+                          index === 0 && "w-[60%] sm:w-[50%] md:w-full"
+                        )}>
+                          <AlienCard
+                            alien={result.alien}
+                            similarity={result.similarity}
+                            onClick={() => setSelectedAlienForDetail(result.alien)}
+                          />
+                        </div>
                       </motion.div>
                     ))}
                   </div>
