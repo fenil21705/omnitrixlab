@@ -184,27 +184,41 @@ export const Similarity = () => {
                   <h2 className="font-orbitron text-base sm:text-lg text-primary mb-4 sm:mb-6 text-center">
                     TOP 3 SIMILAR ALIENS
                   </h2>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-6 max-w-4xl mx-auto">
-                    {topSimilar.map((result, index) => (
+                  <div className="space-y-4 max-w-4xl mx-auto">
+                    {/* Top Alien - Centered and specific width */}
+                    <div className="flex justify-center">
                       <motion.div
-                        key={result.alien.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 + index * 0.1 }}
-                        className={cn(
-                          "w-full",
-                          // On mobile (grid-cols-2), make the first item span full width (centered top)
-                          // On desktop (grid-cols-3), everything is 1 column
-                          index === 0 && "col-span-2 md:col-span-1"
-                        )}
+                        transition={{ delay: 0.2 }}
+                        className="w-[60%] sm:w-[40%] md:w-[33%]"
                       >
                         <AlienCard
-                          alien={result.alien}
-                          similarity={result.similarity}
-                          onClick={() => setSelectedAlienForDetail(result.alien)}
+                          alien={topSimilar[0].alien}
+                          similarity={topSimilar[0].similarity}
+                          onClick={() => setSelectedAlienForDetail(topSimilar[0].alien)}
                         />
                       </motion.div>
-                    ))}
+                    </div>
+
+                    {/* Next 2 Aliens - Grid */}
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-6 md:justify-center">
+                      {topSimilar.slice(1).map((result, index) => (
+                        <motion.div
+                          key={result.alien.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.3 + index * 0.1 }}
+                          className="w-full"
+                        >
+                          <AlienCard
+                            alien={result.alien}
+                            similarity={result.similarity}
+                            onClick={() => setSelectedAlienForDetail(result.alien)}
+                          />
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
 
