@@ -14,15 +14,20 @@ export const Home = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const { data: aliens } = useAliens();
 
-  // Mock System Stats
-  const systemStats = [
-    { label: "ALIENS SCANNED", value: aliens?.length || 62, icon: Database, color: "text-primary" },
-    { label: "SYSTEM STATUS", value: "ONLINE", icon: Activity, color: "text-green-400" },
-    { label: "SECURITY LEVEL", value: "LEVEL 5", icon: ShieldCheck, color: "text-primary" },
-    { label: "AI CORE", value: "ACTIVE", icon: Cpu, color: "text-blue-400" },
-  ];
+  const [apiStatus, setApiStatus] = useState<"ONLINE" | "OFFLINE">("OFFLINE");
 
   useEffect(() => {
+    // Check API Health
+    const checkHealth = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE}/`);
+        if (res.ok) setApiStatus("ONLINE");
+      } catch (e) {
+        setApiStatus("OFFLINE");
+      }
+    };
+    checkHealth();
+
     // Create audio element for background music during loading
     audioRef.current = new Audio(omnitrixInit);
     audioRef.current.volume = 0.3;
@@ -63,6 +68,14 @@ export const Home = () => {
       path: "/cluster",
       delay: 0.3
     },
+  ];
+
+  // System Stats
+  const systemStats = [
+    { label: "ALIENS SCANNED", value: aliens?.length || 62, icon: Database, color: "text-primary" },
+    { label: "SYSTEM STATUS", value: apiStatus, icon: Activity, color: apiStatus === "ONLINE" ? "text-green-400" : "text-red-400" },
+    { label: "SECURITY LEVEL", value: "LEVEL 5", icon: ShieldCheck, color: "text-primary" },
+    { label: "AI CORE", value: "ACTIVE", icon: Cpu, color: "text-blue-400" },
   ];
 
   return (
