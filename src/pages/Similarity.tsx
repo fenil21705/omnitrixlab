@@ -191,7 +191,12 @@ export const Similarity = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 + index * 0.1 }}
-                        className="w-full"
+                        className={cn(
+                          "w-full",
+                          // On mobile (grid-cols-2), make the first item span full width (centered top)
+                          // On desktop (grid-cols-3), everything is 1 column
+                          index === 0 && "col-span-2 md:col-span-1"
+                        )}
                       >
                         <AlienCard
                           alien={result.alien}
