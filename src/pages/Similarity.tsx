@@ -184,7 +184,7 @@ export const Similarity = () => {
                   <h2 className="font-orbitron text-base sm:text-lg text-primary mb-4 sm:mb-6 text-center">
                     TOP 3 SIMILAR ALIENS
                   </h2>
-                  <div className="grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-6 max-w-4xl mx-auto">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-6 max-w-4xl mx-auto">
                     {topSimilar.map((result, index) => (
                       <motion.div
                         key={result.alien.id}
