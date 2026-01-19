@@ -173,6 +173,7 @@ export const ScatterPlot = ({ points, width = 600, height = 400 }: ScatterPlotPr
                 r={isActive ? 24 : 14}
                 fill={color}
                 opacity={0.2}
+                initial={{ r: 14 }}
                 animate={{ r: isActive ? 24 : 14 }}
                 transition={{ duration: 0.3 }}
               />
