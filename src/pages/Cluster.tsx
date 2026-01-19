@@ -301,20 +301,22 @@ export const Cluster = () => {
           </div>
         ) : displayData ? (
           <div className="space-y-4">
-            {displayData.map((cluster, clusterIndex) => (
-              <motion.div
-                key={cluster.cluster}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: clusterIndex * 0.1 }}
-              >
-                <ClusterSection
-                  cluster={cluster}
-                  clusterIndex={clusterIndex}
-                  onAlienClick={setSelectedAlien}
-                />
-              </motion.div>
-            ))}
+            {displayData
+              .sort((a, b) => a.cluster - b.cluster) // Sort by Cluster ID (1, 2, 3...)
+              .map((cluster, clusterIndex) => (
+                <motion.div
+                  key={cluster.cluster}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: clusterIndex * 0.1 }}
+                >
+                  <ClusterSection
+                    cluster={cluster}
+                    clusterIndex={clusterIndex}
+                    onAlienClick={setSelectedAlien}
+                  />
+                </motion.div>
+              ))}
           </div>
         ) : (
           <motion.div
