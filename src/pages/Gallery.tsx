@@ -64,7 +64,7 @@ export const Gallery = () => {
   }
 
   return (
-    <div className="min-h-screen pt-20 pb-12 px-4">
+    <div className="min-h-screen pt-20 pb-12 px-2 sm:px-4">
       <div className="container mx-auto">
         {/* Header */}
         <motion.div
@@ -90,7 +90,7 @@ export const Gallery = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6"
+          className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-6"
         >
           {visibleAliens.map((alien, index) => (
             <motion.div

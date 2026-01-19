@@ -30,7 +30,7 @@ export const AlienCard = ({ alien, onClick, clusterIndex, similarity }: AlienCar
       transition={{ duration: 0.3 }}
     >
       {/* Image container with hexagonal clip */}
-      <div className="relative aspect-square overflow-hidden">
+      <div className="relative aspect-[4/5] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
         <img
           src={alien.image}
